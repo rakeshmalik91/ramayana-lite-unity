@@ -61,7 +61,7 @@ public class Arrow : MonoBehaviour {
 	private void SetAngle() {
 		Rigidbody2D rigidbody = GetComponent<Rigidbody2D> ();
 		if (rigidbody != null) {
-			Vector3 dir = rigidbody.velocity;
+			Vector3 dir = rigidbody.linearVelocity;
 			float angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
 			transform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
 		}

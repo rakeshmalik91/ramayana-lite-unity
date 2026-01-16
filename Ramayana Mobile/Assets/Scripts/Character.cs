@@ -103,10 +103,10 @@ public abstract class Character : MonoBehaviour {
 		newVelocity *= speed; 	
 
 		//smoothen
-		newVelocity = Mathf.Lerp (rigidbody2d.velocity.x, newVelocity, runSmoothness);
+		newVelocity = Mathf.Lerp (rigidbody2d.linearVelocity.x, newVelocity, runSmoothness);
 
 		//get velocity diff for force
-		float runForce = newVelocity - rigidbody2d.velocity.x;
+		float runForce = newVelocity - rigidbody2d.linearVelocity.x;
 
 		//apply run force
 		if (runForce != 0) {
@@ -139,7 +139,7 @@ public abstract class Character : MonoBehaviour {
 				currentJumpSpeed = Mathf.Clamp (currentJumpSpeed + Time.deltaTime * jumpSpeedIncreaseRate, jumpSpeed.min, jumpSpeed.max);
 				//stop running when reached half max jump speed
 				if (currentJumpSpeed >= (jumpSpeed.max + jumpSpeed.min) / 2) {
-					rigidbody2d.velocity = Vector3.zero;
+					rigidbody2d.linearVelocity = Vector3.zero;
 				}
 				//update ai variables
 				aiJumpWaitTimer -= Time.deltaTime;
@@ -217,7 +217,7 @@ public abstract class Character : MonoBehaviour {
 			sprite.Jump ();
 		} else if (isOnGround ()) {
 			if (isRunning ()) {
-				sprite.Walk (rigidbody2d.velocity.x / 4f);
+				sprite.Walk (rigidbody2d.linearVelocity.x / 4f);
 			} else {
 				sprite.Idle ();
 			}
@@ -282,7 +282,7 @@ public abstract class Character : MonoBehaviour {
 	}
 
 	public virtual bool isRunning () {
-		return Mathf.Abs (rigidbody2d.velocity.x) >= 0.2f;
+		return Mathf.Abs (rigidbody2d.linearVelocity.x) >= 0.2f;
 	}
 
 	public virtual Bounds GetBounds() {

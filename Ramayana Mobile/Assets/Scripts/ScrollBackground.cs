@@ -28,7 +28,7 @@ public class ScrollBackground : MonoBehaviour {
 	
 	void FixedUpdate () {
 		//get target velocity
-		float targetVelocity = target.velocity.x;
+		float targetVelocity = target.linearVelocity.x;
 		//translate sprite according to target velocity
 		this.transform.Translate (new Vector3 (-speed * targetVelocity, 0, 0) * Time.deltaTime);
 		//set sprite is moving out of screen shift it to put clone in its place

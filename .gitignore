@@ -59,3 +59,6 @@ Thumbs.db
 *.app/
 *.exe
 *_Data/
+builds/
+
+backup.zip
